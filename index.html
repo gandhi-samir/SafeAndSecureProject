@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="sasCss.css">
+    </head>
+
+<body>
+
+
+<h1 id="head">Test Your Password Strength</h1>
+<div class="form-control">
+  <input id = "pass" type="password" required placeholder="Password" oninput="checkStrength()"/>
+  <button onclick="generatePass()">Generate</button>
+</div>
+<div>
+    <h2 id = "Strength">Enter a Password!</h2>
+</div>
+<script>
+
+
+
+    
+      function checkStrength() {
+       
+
+        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+        let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+
+            var x = document.getElementById("pass").value;
+            
+           if(strongPassword.test(x)){
+                setTextColor("Strong","green")
+            }
+            else if(mediumPassword.test(x)){
+                setTextColor("Moderate","orange")
+            }
+            else{
+                setTextColor("Weak","red")
+            }
+        }
+
+        function setTextColor(x,y){
+            document.getElementById("Strength").innerHTML = x;
+            document.getElementById("Strength").style.color=y;
+
+        }
+
+
+        let pass=" ";
+        const characters ='ABCD18EFG*!/$$#@%H7IJKLMabcdefghiNOP$$#%&@Q9RS*!/%&#$TUVW@%X5YZab*!3cde0fghijkl@$%mnop2qrstuv6w4xyz*!/%&#$012345#$%&6789';
+
+        function generatePass(){
+            document.getElementById("pass").value = "";
+            pass="";
+
+            for(let i =0; i <18;i++){
+                
+                pass+=characters.charAt(Math.floor(Math.random() *120 ));
+               
+            }
+
+            document.getElementById("Strength").innerHTML=pass;
+            document.getElementById("Strength").style.color="green";
+            
+   
+        }
+        
+
+     
+      
+    
+    </script>
+
+
+
+
+</body>
+</html>
